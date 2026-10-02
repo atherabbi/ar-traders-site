@@ -1,6 +1,6 @@
 {
   "notice_bar": true,
-  "hero_search": false,
+  "hero_search": true,
   "hero_label": false,
   "check_pack": true,
   "brands": true,
