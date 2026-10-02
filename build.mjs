@@ -203,7 +203,7 @@ ${alternates}
 ${img ? `<meta property="og:image" content="${esc(absAsset(img))}">\n<meta name="twitter:card" content="summary_large_image">` : '<meta name="twitter:card" content="summary">'}
 ${site.google_verification ? `<meta name="google-site-verification" content="${esc(site.google_verification)}">` : ""}
 ${site.bing_verification ? `<meta name="msvalidate.01" content="${esc(site.bing_verification)}">` : ""}
-<link rel="icon" href="${BASE}/favicon.svg" type="image/svg+xml">
+${company.icon ? `<link rel="icon" href="${esc(asset(company.icon))}">` : `<link rel="icon" href="${BASE}/favicon.svg" type="image/svg+xml">`}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@500;600;700&family=Anek+Latin:wght@500;600;700&family=Hind+Siliguri:wght@400;500;600&display=swap">
@@ -213,7 +213,7 @@ ${ld}
 <body>
 ${on("notice_bar") && L(home, "notice", lang) ? `<div class="ribbon"><div class="wrap">${esc(L(home, "notice", lang))}</div></div>` : ""}
 <header class="top"><div class="wrap top-in">
-<a class="logo" href="${u(lang, "/")}">${company.logo ? `<img src="${esc(asset(company.logo))}" alt="${esc(COMPANY)}" height="36">` : `<span class="logo-mark" aria-hidden="true"></span>${esc(COMPANY)}`}</a>
+<a class="logo" href="${u(lang, "/")}">${company.logo ? `<img src="${esc(asset(company.logo))}" alt="${esc(COMPANY)}" height="48">${company.logo_with_name ? `<span>${esc(COMPANY)}</span>` : ""}` : `<span class="logo-mark" aria-hidden="true"></span>${esc(COMPANY)}`}</a>
 <nav class="nav" aria-label="Main">${nav}</nav>
 ${LANGS.length > 1 ? `<div class="lang">${["en", "bn"].filter((l) => LANGS.includes(l)).map((l) => `<a href="${u(l, page.noindex ? "/" : page.path)}" lang="${l}"${l === lang ? ' aria-current="true"' : ""}>${UI[l].lang_name}</a>`).join("")}</div>` : ""}
 </div></header>

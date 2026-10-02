@@ -1,7 +1,7 @@
 {
   "name": "A.R. Traders",
   "legal_name": "A.R. Traders",
-  "logo": "/uploads/ar-traders-logo.svg",
+  "logo": "/uploads/ar-traders-logo.webp",
   "city_en": "Bashundhara, Dhaka",
   "city_bn": "বসুন্ধরা, ঢাকা",
   "address_en": "Dhali Shopping Complex, Plot #53/C, Block #E, Bashundhara, Dhaka (near Apollo Hospital)",
@@ -10,5 +10,7 @@
   "whatsapp": "",
   "email": "artraders2016bd@gmail.com",
   "hours_en": "",
-  "hours_bn": ""
+  "hours_bn": "",
+  "logo_with_name": true,
+  "icon": "/uploads/ar-traders-icon.png"
 }
