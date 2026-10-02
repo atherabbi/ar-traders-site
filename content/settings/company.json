@@ -1,14 +1,14 @@
 {
-  "name": "Meridwell",
-  "legal_name": "Meridwell Imports Ltd.",
-  "logo": "",
-  "city_en": "Dhaka, Bangladesh",
-  "city_bn": "ঢাকা, বাংলাদেশ",
-  "address_en": "House 00, Road 00, Dhaka",
-  "address_bn": "বাড়ি ০০, রোড ০০, ঢাকা",
-  "phone": "+880 1XXX-XXXXXX",
+  "name": "A.R. Traders",
+  "legal_name": "A.R. Traders",
+  "logo": "/uploads/ar-traders-logo.svg",
+  "city_en": "Bashundhara, Dhaka",
+  "city_bn": "বসুন্ধরা, ঢাকা",
+  "address_en": "Dhali Shopping Complex, Plot #53/C, Block #E, Bashundhara, Dhaka (near Apollo Hospital)",
+  "address_bn": "ঢালী শপিং কমপ্লেক্স, প্লট #৫৩/সি, ব্লক #ই, বসুন্ধরা, ঢাকা (অ্যাপোলো হাসপাতালের কাছে)",
+  "phone": "01818-305918",
   "whatsapp": "",
-  "email": "sales@yourcompany.com",
-  "hours_en": "Saturday to Thursday, 9 am to 6 pm",
-  "hours_bn": "শনিবার থেকে বৃহস্পতিবার, সকাল ৯টা থেকে সন্ধ্যা ৬টা"
+  "email": "artraders2016bd@gmail.com",
+  "hours_en": "",
+  "hours_bn": ""
 }

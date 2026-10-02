@@ -24,7 +24,8 @@ button,input,select,textarea{font:inherit; color:inherit}
 .top{position:sticky; top:0; z-index:20; background:var(--surface); border-bottom:1px solid var(--line)}
 .top-in{display:flex; flex-wrap:wrap; align-items:center; gap:10px 24px; padding-block:12px}
 .logo{display:flex; align-items:center; gap:10px; font-family:var(--display); font-weight:700; font-size:1.2rem; color:var(--ink); text-decoration:none; margin-right:auto}
-.logo img{height:36px; width:auto; display:block}
+.logo img{height:36px; width:auto; max-width:min(250px,52vw); object-fit:contain; object-position:left center; display:block}
+@media (prefers-color-scheme:dark){ .logo img{background:#fff; padding:5px 9px; border-radius:7px; height:42px; box-sizing:border-box} }
 .logo-mark{width:30px; height:30px; border-radius:8px; background:var(--primary); position:relative; flex:none}
 .logo-mark::before,.logo-mark::after{content:""; position:absolute; background:var(--primary-ink); border-radius:2px}
 .logo-mark::before{left:13px; top:7px; width:4px; height:16px}

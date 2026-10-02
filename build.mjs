@@ -56,7 +56,9 @@ const defLang = bnOn && site.default_language === "bn" ? "bn" : "en";
 const LANGS = bnOn ? [defLang, defLang === "en" ? "bn" : "en"] : ["en"];
 const prefix = (lang) => (lang === defLang ? "" : "/" + lang);
 
-let SITE = String(site.site_url || process.env.URL || process.env.CF_PAGES_URL || "").trim().replace(/\/+$/, "");
+// A preview deployment (PREVIEW_URL) is served from its own address and is kept out of search engines.
+const PREVIEW = String(process.env.PREVIEW_URL || "").trim();
+let SITE = String(PREVIEW || site.site_url || process.env.URL || process.env.CF_PAGES_URL || "").trim().replace(/\/+$/, "");
 if (!SITE) { SITE = "https://example.com"; warn("No website address set yet (Settings → Search engines → Website address). Using https://example.com in the sitemap."); }
 if (!/^https?:\/\//.test(SITE)) SITE = "https://" + SITE;
 
@@ -165,7 +167,7 @@ function layout(lang, page, r) {
   const title = r.title;
   const desc = clip(r.desc || L(site, "meta_description", lang));
   const img = r.image || site.share_image || company.logo || "";
-  const alternates = page.noindex || LANGS.length < 2 ? "" :
+  const alternates = page.noindex || PREVIEW || LANGS.length < 2 ? "" :
     LANGS.map((l) => `<link rel="alternate" hreflang="${l}" href="${abs(l, page.path)}">`).join("\n") + `\n<link rel="alternate" hreflang="x-default" href="${abs(defLang, page.path)}">`;
   const nav = [
     [u(lang, "/products/"), "nav_products", true],
@@ -190,7 +192,7 @@ function layout(lang, page, r) {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
-${page.noindex ? '<meta name="robots" content="noindex">' : `<link rel="canonical" href="${canonical}">`}
+${page.noindex || PREVIEW ? '<meta name="robots" content="noindex">' : `<link rel="canonical" href="${canonical}">`}
 ${alternates}
 <meta property="og:type" content="${r.ogType || "website"}">
 <meta property="og:site_name" content="${esc(COMPANY)}">
@@ -336,7 +338,7 @@ function cataloguePage(lang) {
     title: `${t(lang, "catalogue_h")} | ${COMPANY}`, desc: t(lang, "catalogue_desc", { company: COMPANY }),
     body: `${crumbs(lang, items)}<section class="sec" style="padding-top:20px"><div class="wrap">
 <div class="sec-head"><h1>${t(lang, "catalogue_h")}</h1><p>${on("show_mrp") ? t(lang, "catalogue_mrp") : t(lang, "catalogue_p")}</p></div>
-${filterBar(lang, products)}</div></section>`,
+${products.length ? filterBar(lang, products) : `<div class="empty"><p>${t(lang, "no_products")}</p></div>`}</div></section>`,
     jsonld: [crumbLd(lang, items)],
   };
 }
