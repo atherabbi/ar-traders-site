@@ -42,6 +42,7 @@ const on = (key) => sections[key] !== false; // every section is shown unless sw
 const brands = loadDir("content/brands").sort(byOrder);
 const categories = loadDir("content/categories").sort(byOrder);
 const products = loadDir("content/products").filter((p) => p.published !== false).sort(byOrder);
+const HAS_PRICES = on("show_mrp") && products.some((p) => p.mrp);
 const brandBy = Object.fromEntries(brands.map((b) => [b.slug, b]));
 const catBy = Object.fromEntries(categories.map((c) => [c.slug, c]));
 for (const p of products) {
@@ -266,7 +267,7 @@ ${on("hero_label") ? `<div class="label-wrap"><figure class="label" aria-label="
 </div></section>`);
 
   if (on("featured_products") && shown.length) out.push(`<section class="sec" id="products"><div class="wrap">
-<div class="sec-head"><h2>${t(lang, "featured_h")}</h2>${on("show_mrp") ? `<p>${t(lang, "catalogue_mrp")}</p>` : ""}</div>
+<div class="sec-head"><h2>${t(lang, "featured_h")}</h2>${HAS_PRICES ? `<p>${t(lang, "catalogue_mrp")}</p>` : ""}</div>
 ${gridOf(shown, lang)}
 <p class="more"><a class="btn" href="${u(lang, "/products/")}">${t(lang, "view_all")}</a></p>
 </div></section>`);
@@ -337,7 +338,7 @@ function cataloguePage(lang) {
   return {
     title: `${t(lang, "catalogue_h")} | ${COMPANY}`, desc: t(lang, "catalogue_desc", { company: COMPANY }),
     body: `${crumbs(lang, items)}<section class="sec" style="padding-top:20px"><div class="wrap">
-<div class="sec-head"><h1>${t(lang, "catalogue_h")}</h1><p>${on("show_mrp") ? t(lang, "catalogue_mrp") : t(lang, "catalogue_p")}</p></div>
+<div class="sec-head"><h1>${t(lang, "catalogue_h")}</h1><p>${HAS_PRICES ? t(lang, "catalogue_mrp") : t(lang, "catalogue_p")}</p></div>
 ${products.length ? filterBar(lang, products) : `<div class="empty"><p>${t(lang, "no_products")}</p></div>`}</div></section>`,
     jsonld: [crumbLd(lang, items)],
   };
@@ -369,13 +370,13 @@ function productPage(lang, p) {
   const more = products.filter((x) => x.brand === p.brand && x.slug !== p.slug).slice(0, 4);
   const full = [brandName(p), name].filter(Boolean).join(" ");
   const ld = {
-    "@context": "https://schema.org", "@type": "Product", name: full, description: L(p, "description", lang) || undefined, url: abs(lang, `/products/${p.slug}/`),
+    "@context": "https://schema.org", "@type": "Product", name, description: L(p, "description", lang) || undefined, url: abs(lang, `/products/${p.slug}/`),
     image: p.image ? absAsset(p.image) : undefined, brand: b ? { "@type": "Brand", name: b.name } : undefined, category: c ? L(c, "name", lang) : undefined,
     sku: p.reg_no || undefined, countryOfOrigin: originOf(p, "en") ? { "@type": "Country", name: originOf(p, "en") } : undefined,
     offers: on("show_mrp") && p.mrp ? { "@type": "Offer", price: String(p.mrp), priceCurrency: "BDT", availability: "https://schema.org/InStoreOnly", url: abs(lang, `/products/${p.slug}/`), seller: { "@type": "Organization", name: COMPANY } } : undefined,
   };
   return {
-    title: `${full}${L(p, "pack", lang) ? ", " + L(p, "pack", lang) : ""} | ${COMPANY}`,
+    title: [`${name}${L(p, "pack", lang) ? ", " + L(p, "pack", lang) : ""}`, brandName(p), COMPANY].filter(Boolean).join(" | "),
     desc: [L(p, "description", lang), (p.composition || []).length ? p.composition.slice(0, 3).join(", ") + "." : "", t(lang, "product_desc_tail", { company: COMPANY })].filter(Boolean).join(" "),
     image: p.image, ogType: "product",
     body: `${crumbs(lang, items)}<div class="wrap"><article class="product cat-${p.category}">
@@ -385,7 +386,7 @@ function productPage(lang, p) {
 ${L(p, "description", lang) ? `<p class="lead">${esc(L(p, "description", lang))}</p>` : ""}
 <dl class="spec">${spec.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("")}</dl>
 <p class="note">${t(lang, "m_buy")} ${t(lang, "imported_by", { company: esc(COMPANY) })}</p>
-<div><a class="btn" href="${inquiryHref(lang, "?product=" + encodeURIComponent(full))}">${t(lang, "m_ask")}</a></div>
+<div><a class="btn" href="${inquiryHref(lang, "?product=" + encodeURIComponent(name))}">${t(lang, "m_ask")}</a></div>
 </div></article></div>
 ${more.length ? `<section class="sec band"><div class="wrap"><div class="sec-head"><h2>${esc(t(lang, "more_from", { brand: brandName(p) }))}</h2></div>${gridOf(more, lang)}</div></section>` : ""}`,
     jsonld: [ld, crumbLd(lang, items)],
