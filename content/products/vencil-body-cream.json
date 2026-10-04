@@ -1,0 +1,30 @@
+{
+  "name_en": "Vencil Body Cream",
+  "name_bn": "ভেনসিল বডি ক্রিম",
+  "brand": "vencil",
+  "category": "dermocosmetics",
+  "image": "",
+  "pack_shape": "tube",
+  "pack_en": "170 ml",
+  "pack_bn": "১৭০ মি.লি.",
+  "composition": [
+    "Panthenol",
+    "Shea butter",
+    "Glycerin",
+    "Olive oil",
+    "Allantoin",
+    "Bisabolol",
+    "Aloe vera"
+  ],
+  "description_en": "Body cream that moisturises, protects and rebuilds the skin. It gives long-lasting deep hydration and improves elasticity, and soothes dry, irritated or sun-exposed skin.",
+  "description_bn": "শরীরের ত্বক আর্দ্র রাখে, সুরক্ষা দেয় ও পুনর্গঠনে সহায়তা করে এমন বডি ক্রিম। এটি দীর্ঘস্থায়ী গভীর আর্দ্রতা দেয়, ত্বকের স্থিতিস্থাপকতা বাড়ায় এবং শুষ্ক, জ্বালাযুক্ত বা রোদে পোড়া ত্বককে প্রশমিত করে।",
+  "usage_en": "",
+  "usage_bn": "",
+  "origin_en": "",
+  "origin_bn": "",
+  "reg_no": "",
+  "mrp": null,
+  "featured": false,
+  "published": true,
+  "order": 9
+}

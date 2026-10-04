@@ -1,0 +1,30 @@
+{
+  "name_en": "Vencil Softskin Liquid",
+  "name_bn": "ভেনসিল সফটস্কিন লিকুইড",
+  "brand": "vencil",
+  "category": "dermocosmetics",
+  "image": "",
+  "pack_shape": "pump",
+  "pack_en": "200 ml",
+  "pack_bn": "২০০ মি.লি.",
+  "composition": [
+    "Sepicontrol A5",
+    "Salicylic acid",
+    "Glycolic acid",
+    "PEG-6 undecylenate",
+    "Panthenol",
+    "Glycerin",
+    "Calendula extract"
+  ],
+  "description_en": "Mild cleansing liquid for combination and oily, acne-prone skin. It cleanses deeply without irritating, regulates sebum and removes impurities and make-up, leaving a matte finish.",
+  "description_bn": "মিশ্র ও তৈলাক্ত, ব্রণপ্রবণ ত্বকের জন্য মৃদু ক্লিনজিং লিকুইড। এটি জ্বালা না করে গভীরভাবে পরিষ্কার করে, সিবাম নিয়ন্ত্রণ করে এবং ময়লা ও মেকআপ তুলে ম্যাট ফিনিশ দেয়।",
+  "usage_en": "Cleanse the skin every morning and evening.",
+  "usage_bn": "প্রতিদিন সকাল ও সন্ধ্যায় ত্বক পরিষ্কার করুন।",
+  "origin_en": "",
+  "origin_bn": "",
+  "reg_no": "",
+  "mrp": null,
+  "featured": false,
+  "published": true,
+  "order": 10
+}

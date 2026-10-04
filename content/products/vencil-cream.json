@@ -1,0 +1,25 @@
+{
+  "name_en": "Vencil Cream",
+  "name_bn": "ভেনসিল ক্রিম",
+  "brand": "vencil",
+  "category": "dermocosmetics",
+  "image": "",
+  "pack_shape": "tube",
+  "pack_en": "100 ml",
+  "pack_bn": "১০০ মি.লি.",
+  "composition": [
+    "Panthenol (provitamin B5)",
+    "Glycerin"
+  ],
+  "description_en": "Moisturising and regenerating cream for dry and irritated skin on the face and body. It soothes, nourishes and protects, and helps repair the skin barrier.",
+  "description_bn": "মুখ ও শরীরের শুষ্ক ও সংবেদনশীল ত্বকের জন্য ময়েশ্চারাইজিং ও রিজেনারেটিং ক্রিম। এটি ত্বককে প্রশমিত করে, পুষ্টি ও সুরক্ষা দেয় এবং ত্বকের সুরক্ষা-স্তর পুনর্গঠনে সহায়তা করে।",
+  "usage_en": "Face and body, morning and evening.",
+  "usage_bn": "মুখ ও শরীরে, সকাল ও সন্ধ্যায়।",
+  "origin_en": "",
+  "origin_bn": "",
+  "reg_no": "",
+  "mrp": null,
+  "featured": true,
+  "published": true,
+  "order": 8
+}
