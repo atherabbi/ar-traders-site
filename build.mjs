@@ -457,7 +457,10 @@ write("robots.txt", `User-agent: *\nAllow: /\nDisallow: ${BASE}/admin/\n\nSitema
 
 // admin screen: connect it to this site's GitHub repository
 function detectRepo() {
-  const cands = [process.env.CMS_REPO, process.env.REPOSITORY_URL];
+  // The repository named in package.json lets the admin connect without any hosting settings.
+  let pkgRepo = "";
+  try { const r = JSON.parse(fs.readFileSync(path.join(ROOT, "package.json"), "utf8")).repository; pkgRepo = typeof r === "string" ? r : (r && r.url) || ""; } catch {}
+  const cands = [process.env.CMS_REPO, pkgRepo, process.env.REPOSITORY_URL];
   try { cands.push(execSync("git remote get-url origin", { cwd: ROOT, stdio: ["ignore", "pipe", "ignore"] }).toString()); } catch {}
   for (const c of cands) {
     const m = c && c.trim().match(/([\w.-]+)\/([\w.-]+?)(?:\.git)?\/?$/);
