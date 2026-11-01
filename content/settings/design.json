@@ -1,4 +1,6 @@
 {
   "primary": "#7A1D90",
-  "accent": "#F6B93B"
+  "accent": "#F6B93B",
+  "background": "white",
+  "dark_mode": false
 }

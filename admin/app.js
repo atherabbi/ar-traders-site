@@ -380,6 +380,7 @@
       { title: "Address", fields: [{ k: "city", t: "pair", label: "City" }, { k: "address", t: "pair", label: "Office address" }] },
     ] },
     colours: { file: "design", title: "Colours", desc: "Two colours set the look of the whole site. Dark-mode colours are worked out automatically.", groups: [
+      { title: "Page", fields: [{ k: "background", t: "select", def: "tinted", opts: [["tinted", "Light tint of the main colour"], ["white", "White"]], label: "Page background" }, { k: "dark_mode", t: "bool", def: true, label: "Dark version for phones in dark mode", hint: "Switch off to always show the light version." }] },
       { title: "Brand colours", fields: [{ k: "primary", t: "color", def: "#0A6B62", label: "Main colour", hint: "Buttons, links and highlights.", after: () => drawPreview() }, { k: "accent", t: "color", def: "#F6B93B", label: "Label colour", hint: "The importer label picture and small accents.", after: () => drawPreview() }] },
     ] },
     search: { file: "site", title: "Search engines", desc: "What Google and other search engines need. The sitemap and page descriptions are rebuilt on every publish.", groups: [

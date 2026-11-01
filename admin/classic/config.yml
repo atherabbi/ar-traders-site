@@ -158,6 +158,14 @@ collections:
         fields:
           - { name: primary, label: Main colour, widget: color, hint: "Buttons, links and highlights. Dark-mode colours are worked out automatically." }
           - { name: accent, label: Label colour, widget: color, hint: "The importer label picture and small accents." }
+          - name: background
+            label: Page background
+            widget: select
+            default: tinted
+            options:
+              - { label: Light tint of the main colour, value: tinted }
+              - { label: White, value: white }
+          - { name: dark_mode, label: Dark version for phones in dark mode, widget: boolean, default: true }
 
       - name: site
         label: Search engines and languages

@@ -90,14 +90,17 @@ const CAT_DEFAULTS = [PRIMARY, "#A8405F", "#8A5A12", "#3F5FA8", "#6B4FA0", "#2F7
 const catColor = (c, i) => (rgb(c.color) ? c.color : CAT_DEFAULTS[i % CAT_DEFAULTS.length]);
 
 function themeCss() {
-  const ink = mix(PRIMARY, "#101A1C", 0.8), bg = mix(PRIMARY, "#ffffff", 0.94);
+  // Two choices in Settings → Colours: a white or lightly tinted page, and whether phones in dark mode get a dark version.
+  const WHITE = design.background === "white", DARK = design.dark_mode !== false;
+  const ink = WHITE ? mix(PRIMARY, "#140A18", 0.55) : mix(PRIMARY, "#101A1C", 0.8), bg = WHITE ? "#ffffff" : mix(PRIMARY, "#ffffff", 0.94);
   const labelInk = lum(ACCENT) > 0.4 ? "#2A1E00" : "#ffffff";
   const dPrimary = lum(PRIMARY) > 0.35 ? PRIMARY : mix(PRIMARY, "#ffffff", 0.5);
   const dBg = mix(PRIMARY, "#0B1012", 0.88);
   const light = {
-    bg, surface: "#ffffff", ink, muted: mix(ink, bg, 0.3), line: mix(PRIMARY, "#ffffff", 0.8),
-    primary: PRIMARY, "primary-ink": lum(PRIMARY) > 0.4 ? ink : "#ffffff", tint: mix(PRIMARY, "#ffffff", 0.86),
-    label: ACCENT, "label-ink": labelInk, "label-rule": mix(ACCENT, labelInk, 0.35), danger: "#A32A2A", "foot-bg": ink, "foot-ink": bg,
+    bg, surface: "#ffffff", ink, muted: WHITE ? mix(ink, "#ffffff", 0.36) : mix(ink, bg, 0.3), line: mix(PRIMARY, "#ffffff", WHITE ? 0.87 : 0.8),
+    primary: PRIMARY, "primary-ink": lum(PRIMARY) > 0.4 ? ink : "#ffffff", tint: mix(PRIMARY, "#ffffff", WHITE ? 0.955 : 0.86),
+    label: ACCENT, "label-ink": labelInk, "label-rule": mix(ACCENT, labelInk, 0.35), danger: "#A32A2A",
+    "foot-bg": WHITE ? mix(PRIMARY, "#ffffff", 0.935) : ink, "foot-ink": WHITE ? ink : bg,
   };
   const dark = {
     bg: dBg, surface: mix(PRIMARY, "#131C1E", 0.84), ink: mix(PRIMARY, "#ffffff", 0.9), muted: mix(PRIMARY, "#ffffff", 0.62),
@@ -107,7 +110,7 @@ function themeCss() {
   categories.forEach((c, i) => { light[`cat-${c.slug}`] = catColor(c, i); dark[`cat-${c.slug}`] = mix(catColor(c, i), "#ffffff", 0.5); });
   const vars = (o) => Object.entries(o).map(([k, v]) => `--${k}:${v}`).join(";");
   return `:root{${vars(light)};--display:"Anek Latin","Anek Bangla",system-ui,-apple-system,"Segoe UI",sans-serif;--body:"Hind Siliguri","Noto Sans Bengali",system-ui,-apple-system,"Segoe UI",sans-serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;--r:14px}
-@media (prefers-color-scheme:dark){:root{${vars(dark)};color-scheme:dark}}
+${DARK ? `@media (prefers-color-scheme:dark){:root{${vars(dark)};color-scheme:dark}}` : ":root{color-scheme:light}"}
 ${categories.map((c) => `.cat-${c.slug}{--cat:var(--cat-${c.slug})}`).join("")}
 `;
 }
